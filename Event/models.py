@@ -6,7 +6,7 @@ from Person.models import Person
 
 
 def verifEmail(mail):
-    if str(mail).endswith('@esprit.tn')==false:
+    if str(mail).endswith('@esprit.tn')==False:
         raise ValidationError("Your email is not correct!!")
     return mail
     
@@ -23,6 +23,8 @@ class Event(models.Model):
     image=models.ImageField(upload_to='images/')
     state=models.BooleanField(default=False)
     category=models.CharField(max_length=1,choices=Categorys)
+    nbr_participant = models.PositiveIntegerField(default=0)  
+
     
     evt_date = models.DateTimeField()           
 
@@ -46,7 +48,7 @@ class Event(models.Model):
         related_name='part_evt'
       )
     def __str__(self):
-        return f"L'evt est: {self.title}" 
+        return f"L'EVENT est: {self.title}" 
      
 class participation_event(models.Model):
         person=models.ForeignKey(Person,on_delete=models.CASCADE)
